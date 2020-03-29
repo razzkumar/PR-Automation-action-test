@@ -1,4 +1,4 @@
-name: Deploy site to S3 And add comment to PR and delete after merge
+name: Deploy site to S3 And add comment to PR
 
 on:
   pull_request:
@@ -22,10 +22,3 @@ jobs:
         IS_BUILD: 'true'            # optional: defaults to true
         ACTION: "create"            # optional: defaule to create (option: create,delet and deploy)
         BUILD_COMMAND: "yarn build" # required if IS_BUILD is true
-
-  delete:
-    runs-on: ubuntu-latest
-    steps:
-    - name: merged test
-      if: github.event.pull_request.merged == true
-      run: echo merged

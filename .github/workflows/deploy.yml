@@ -1,7 +1,7 @@
 name: Create s3 bucket and deploy static site
 
 on:
-  pull_request:
+  push:
     branches:
       - master
 

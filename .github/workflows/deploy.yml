@@ -4,7 +4,6 @@
   #pull_request:
     #branches:
     #- master
-
 #jobs:
   #deploy:
     #runs-on: ubuntu-latest
@@ -22,3 +21,4 @@
         #IS_BUILD: 'true'            # optional: defaults to true
         #ACTION: "create"            # optional: defaule to create (option: create,delet and deploy)
         #BUILD_COMMAND: "yarn build" # required if IS_BUILD is true
+

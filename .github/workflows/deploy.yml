@@ -1,21 +1,31 @@
-name: Create s3 bucket and deploy static site
+name: Deploy site to S3 And add comment to PR and delete after merge
 
 on:
   pull_request:
     branches:
-      - master
+    - master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Download Github repo
-      uses: actions/checkout@master
-    - name: Checking what is happining
-      id: action-test
-      uses: ./
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Print URL
-      if: steps.action-test.outputs.url != ''
-      run: echo ${{ steps.action-test.outputs.url }}
+    - uses: actions/checkout@master
+    - name: Static site deploy to s3 and comment on PR
+      uses: razzkumar/pr-automation-with-s3@v0.4.1
+      env:
+        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        GH_ACCSS_TOKEN: ${{ secrets.GH_ACCSS_TOKEN}}
+        AWS_REGION: 'us-east-2'     # optional: defaults to us-east-2
+        BUILD_FOLDER: 'build'       # optional: defaults to build (react app)
+        IS_BUILD: 'true'            # optional: defaults to true
+        ACTION: "create"            # optional: defaule to create (option: create,delet and deploy)
+        BUILD_COMMAND: "yarn build" # required if IS_BUILD is true
+
+  delete:
+    runs-on: ubuntu-latest
+    steps:
+    - name: merged test
+      if: github.event.pull_request.merged == true
+      run: echo merged

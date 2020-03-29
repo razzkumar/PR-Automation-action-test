@@ -1,7 +1,7 @@
 name: Create s3 bucket and deploy static site
 
 on:
-  push:
+  pull_request:
     branches:
       - master
 
@@ -9,7 +9,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - name: Download Github repo
+      uses: actions/checkout@master
     - name: Checking what is happining
       id: action-test
       uses: ./

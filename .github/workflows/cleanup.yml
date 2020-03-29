@@ -1,0 +1,14 @@
+
+name: Deleting
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Pull request merged
+      if: github.event.pull_request.merged == true
+      run: echo merged

@@ -7,9 +7,9 @@ fi
 
 
 addAndCommit () {
-  #echo "This is test commit $1" >> test.txt
-  #git add .
-  #git commit -m "Upate to check PR"
+  echo "This is test commit $1" >> test.txt
+  git add .
+  git commit -m "Upate to check PR"
 
   branchNanme="PR-$1"
   git checkout -b $branchNanme

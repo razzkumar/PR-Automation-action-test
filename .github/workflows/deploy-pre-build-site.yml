@@ -1,0 +1,25 @@
+
+# This will deploy the prebuild or static file to given AWS_S3_BUCKET
+#from given BUILD_FOLDER
+
+
+name: Deploy prebuild static site
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Static site deploy to s3 and comment on PR
+      uses: razzkumar/pr-automation-with-s3@v0.4.0
+      env:
+        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        IS_BUILD: 'false'
+        BUILD_FOLDER: "public"

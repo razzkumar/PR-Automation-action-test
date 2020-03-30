@@ -1,14 +1,15 @@
-
 # It will create `$AWS_S3_BUCKET.auto-deploy` s3 bucket and build the react app
 # and Deploy it
 
 
-name: Create s3,Build and deploy react app
+
+
+name: Deploy prebuild static site
 
 on:
   push:
     branches:
-    - master
+    - dev
 
 jobs:
   deploy:
@@ -21,4 +22,6 @@ jobs:
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}   # attach auto-deploy on name while creating s3 bucket
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        IS_BUILD: 'false'            # It doesn't run "yarn build"
+        BUILD_FOLDER: "public"       # Optional: It will take "build" folder by default
         ACTION: 'deploy'             # action must be deploy

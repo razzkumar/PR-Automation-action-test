@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Static site deploy to s3 and comment on PR
+    - name: Deploy prbuild app
       uses: razzkumar/pr-automation-with-s3@v0.4.0
       env:
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}   # attach auto-deploy on name while creating s3 bucket

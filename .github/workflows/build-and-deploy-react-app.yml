@@ -1,6 +1,5 @@
-# It will create `$AWS_S3_BUCKET.auto-deploy` s3 bucket and build the react app
-# and Deploy it
-
+# It will create `$AWS_S3_BUCKET.auto-deploy` s3 bucket if not exist and build
+#the react app and Deploy it
 
 name: Create s3,Build and deploy react app
 
@@ -14,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Static site deploy to s3 and comment on PR
+    - name: Build and deploy react app
       uses: razzkumar/pr-automation-with-s3@v0.4.0
       env:
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}   # attach auto-deploy on name while creating s3 bucket

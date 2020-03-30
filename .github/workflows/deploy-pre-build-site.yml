@@ -23,3 +23,4 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         IS_BUILD: 'false'
         BUILD_FOLDER: "public"
+        ACTION: 'deploy'             # action must be deploy
